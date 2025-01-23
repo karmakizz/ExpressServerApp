@@ -38,3 +38,22 @@ res.json({message:'User deleted'});
         console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
         next();
     });
+ //Middleware to log request details
+ app.use((req, res, next) => {
+    console.log(`${req.method} request for '${req.url}'`);
+    next();
+  });
+  //Middleware to check for a specific header
+  app.use((req, res, next) => {
+    if (req.headers['x-custom-header']) {
+      next();
+    } else {
+      res.status(400).send('Missing custom header');
+    }
+  });
+  //Create and use error-handling middleware.
+  app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
+ 
