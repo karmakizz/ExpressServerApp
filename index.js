@@ -7,7 +7,27 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-//Start the server  
+//Start the server
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
+});
+
+//Creating routes for different endpoints
+app.get('/about', (req, res) => {
+  res.send('About Page');
+});
+app.get('/contact', (req, res) => {
+  res.send('Contact Page');
+});
+app.get('/users', (req, res) => {
+res.json(users);
+});
+app.post('/users', (req, res) => {
+  res.status(201).json(newUser);
+});
+app.put('/users/:id', (req, res) => {
+res.json(updatedUser);
+});
+app.delete('/users/:id', (req, res) => {
+res.json({essage:'User deleted'});
 });
