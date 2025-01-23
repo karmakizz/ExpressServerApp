@@ -12,6 +12,16 @@ app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
 
+//Defining variables for the routes
+const users = [
+  { id: 1, name: 'John Doe' },
+  { id: 2, name: 'Jane Doe' }
+];
+//Handle the creation of newUser (e.g., extracting it from req.body).
+const newUser = { id: 3, name: 'Sam Smith' };
+
+//Update updatedUser dynamically based on req.params.id.
+
 //Creating routes for different endpoints
 app.get('/about', (req, res) => {
   res.send('About Page');
