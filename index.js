@@ -29,5 +29,12 @@ app.put('/users/:id', (req, res) => {
 res.json(updatedUser);
 });
 app.delete('/users/:id', (req, res) => {
-res.json({essage:'User deleted'});
+res.json({message:'User deleted'});
 });
+
+  //Create and use at least two pieces of custom middleware.
+  app.use(express.json());
+    app.use((req, res, next) => {
+        console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
+        next();
+    });
