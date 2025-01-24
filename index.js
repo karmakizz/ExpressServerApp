@@ -45,6 +45,14 @@ res.json({message:'User deleted'});
 
 //Create and use error-handling middleware.
 app.use((err, req, res, next) => {
+   //simulating an error
+   if (usedId === 0) {
+    const error = new Error('User not found');
+    error.status = 404;
+    next(error);
+    }else{
+        res.json({ id: usedId, name: 'John Doe' });
+    }
     console.error(err.stack);
     res.status(500).send('Something broke!');
   });
