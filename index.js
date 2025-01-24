@@ -21,6 +21,7 @@ const users = [
 const newUser = { id: 3, name: 'Sam Smith' };
 
 //Update updatedUser dynamically based on req.params.id.
+const updatedUser = { id: 1, name: 'John Smith' };
 
 //Creating routes for different endpoints
 app.get('/about', (req, res) => {
@@ -41,6 +42,13 @@ res.json(updatedUser);
 app.delete('/users/:id', (req, res) => {
 res.json({message:'User deleted'});
 });
+
+//Create and use error-handling middleware.
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
+ 
 
   //Create and use at least two pieces of custom middleware.
   app.use(express.json());
