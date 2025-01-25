@@ -83,3 +83,13 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
   });
  
+  // Set the view engine to EJS
+app.set('view engine', 'ejs');
+
+// Set the directory where your views are located
+app.set('views', './views'); 
+
+app.get('/', (req, res) => {
+  // Render the 'index' view with data
+  res.render('index', { title: 'Hello from EJS!' }); 
+});
