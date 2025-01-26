@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 8888;
+app.use(express.static('public'));
 
 //Define a route for the root URL
 app.get('/', (req, res) => {
@@ -46,7 +47,7 @@ res.json({message:'User deleted'});
 //Create and use error-handling middleware.
 app.use((err, req, res, next) => {
    //simulating an error
-   if (usedId === 0) {
+   if (userId === 0) {
     const error = new Error('User not found');
     error.status = 404;
     next(error);
