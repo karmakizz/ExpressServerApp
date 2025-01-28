@@ -48,3 +48,34 @@ footer {
     font-size: 0.9rem;
     color: #777;
 }
+img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+h1 {
+    margin-bottom: 20px;
+   text-align: center;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+label {
+    font-weight: bold;
+}
+p {
+    margin-bottom: 20px;
+    text-align: center;
+}

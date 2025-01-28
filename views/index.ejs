@@ -11,10 +11,26 @@
     <header>
       <h1><%= title %></h1>
     </header>
+    <img src="200.gif" alt="Sign up here" />
+
+    <!-- views/index.ejs -->
+<h1>Create New User</h1>
+<form action="/users" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="occupation">Occupation:</label>
+  <input type="text" id="occupation" name="occupation" required>
+
+  <button type="submit">Create User</button>
+</form>
+
 
     <nav>
       <a href="/">Home</a>
       <a href="/users">Users</a>
+      <a href="/contact">Contact</a>
+      <a href="/about">About</a>
     </nav>
 
     <footer>

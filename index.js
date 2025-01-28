@@ -2,22 +2,22 @@ const express = require('express');
 const app = express();
 const port = 8888;
 const userRoutes = require('./routes/users');
-const e = require('express');
+
+app.use(express.urlencoded({ extended: true })); // This parses the form data
+app.use(express.json()); // This parses JSON data
+
+// Middleware to serve static files (including favicon)
+app.use(express.static('public'));
+
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
 app.set('views', './views');
 // Define the root route for rendering views
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Hello from EJS!' });
+  res.render('index', { title: 'I just work here' });
 });
  // Skip custom header check for static files like favicon
 app.use('/favicon.ico', (req, res) => res.status(204).send());
-
-// Middleware to serve static files (including favicon)
-app.use(express.static('public'));
-
-// Middleware to parse JSON data in requests
-app.use(express.json());
 
 // Middleware to log request details
 app.use((req, res, next) => {
@@ -46,11 +46,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.send('About Page');
+  res.render('about', { title: 'About Page' });
 });
 
 app.get('/contact', (req, res) => {
-  res.send('Contact Page');
+  res.render('contact', { title: 'Contact Page' });
 });
 
 // Error-handling middleware (should come last)
@@ -58,6 +58,16 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
+// Define route for the About page
+app.get('/about', (req, res) => {
+  res.render('about', { title: 'About Us' });
+});
+
+// Define route for the Contact page
+app.get('/contact', (req, res) => {
+  res.render('contact', { title: 'Contact Us' });
+});
+
 
 // Start the server
 app.listen(port, () => {

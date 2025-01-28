@@ -16,11 +16,22 @@ router.get('/', (req, res) => {
 
 // Route to create a new user (POST)
 router.post('/', (req, res) => {
-  const newUser = { id: users.length + 1, name: req.body.name, occupation: req.body.occupation };
-  users.push(newUser);
-  res.status(201).json(newUser);
-});
-
+    // Ensure you get both the name and occupation from the body
+    const { name, occupation } = req.body;
+  
+    if (name && occupation) {
+      const newUser = {
+        id: users.length + 1, // Simple ID generation, in real cases this should be handled by a database
+        name,
+        occupation
+      };
+  
+      users.push(newUser); // Adding the new user to the "database" (array in this case)
+      res.status(201).json(newUser); // Respond with the newly created user
+    } else {
+      res.status(400).json({ message: 'Name and Occupation are required' }); // Handle missing fields
+    }
+    });
 // Route to get a user by ID (GET)
 router.get('/:id', (req, res) => {
     const userId = parseInt(req.params.id); // Get the ID from the URL
